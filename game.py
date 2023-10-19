@@ -21,8 +21,7 @@ TO DO LIST
         This is probably only important when *cough* sorry if I fix the ai
     Create a game GUI using tkinker (optional)
     Create Main Menu GUI:
-    File IO for stat storage and accounts
-    Use functions
+    Improve file IO - possibly for stat storage?
 '''
 
 from copy import deepcopy
@@ -221,7 +220,6 @@ def main():
 
 def last_winner():
     #Satisfy IO requirements - Improve readibility and comments in future.
-    global last_winner
     if os.path.isfile('lastwinner.txt'):
         pass
     else:
