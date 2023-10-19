@@ -1,6 +1,6 @@
 '''
-Gabriel Strand
-2023.10.16
+Gabriel Strand, Collin Frame, Manav Mendonca
+MNSU Mankato CIS 121 Semester 1 Group Project 
 
 ChangeLog:
     Cleaned up code
@@ -9,6 +9,8 @@ ChangeLog:
     Modified the print_board function to allow for any size board
     Removed the 'self.print_board(self.board)' line from the '__init__' method
     Added 'main()' function
+    Improve error logic from user input for non-variable answer and out of range errors
+    Added IO requirements for last winning user - needs improvement
 '''
 '''
 TO DO LIST
@@ -17,7 +19,7 @@ TO DO LIST
     Add 'Draw' Option to the check_for_winner function
         The simpler way to do this might be to track the number of turns taken vs total spaces on the board
         This is probably only important when *cough* sorry if I fix the ai
-    Create a game GUI using tkinker
+    Create a game GUI using tkinker (optional)
     Create Main Menu GUI:
     File IO for stat storage and accounts
     Use functions
@@ -25,6 +27,8 @@ TO DO LIST
 
 from copy import deepcopy
 from random import randint
+import os
+
 
 class Game:
     def __init__(self, w: int, h: int):
@@ -52,7 +56,9 @@ class Game:
                 print('That is not a valid option.')
         #Test to see if the player wins, if so, stop the game and say they won
         if self.test_for_winner(self.board, 1):
-            print('\nPlayer 1 Wins')
+            print(f'\n{Player1_Name} Wins')
+            with open('lastwinner.txt', 'w') as f:
+                f.write(str(Player1_Name))
             self.running = False
 
         self.number_of_turns += 1
@@ -74,7 +80,11 @@ class Game:
 
         #Test to see if the computer wins, if so, stop the game and say they won
         if self.test_for_winner(self.board, 2):
-            print('\nComputer Wins')
+            print(f'\nComputer Wins\nBetter luck next time, {Player1_Name}')
+            with open('lastwinner.txt', 'w') as f:
+                f.write('Computer')
+
+
             self.running = False
 
         self.number_of_turns += 1
@@ -209,5 +219,20 @@ def main():
         #Rotate the board and then print it
         g.print_board(g.board)
 
+def last_winner():
+    #Satisfy IO requirements - Improve readibility and comments in future.
+    global last_winner
+    if os.path.isfile('lastwinner.txt'):
+        pass
+    else:
+        with open('lastwinner.txt', 'w') as f:
+                f.write('Nobody')
+    with open('lastwinner.txt', 'r') as f:
+        last_winner_answer = f.read()
+        return(f'Last winner was: {last_winner_answer}')
+
 if __name__ == "__main__":
+    print(last_winner())
+    Player1_Name = input("Please enter your name: ")
+    print(f'Best of luck, {Player1_Name}')
     main()
