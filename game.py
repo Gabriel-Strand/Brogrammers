@@ -47,7 +47,7 @@ class Game:
         user_turn = True
         while user_turn:
             pre_num = input('Enter the row you would like to place your token in: ')
-            if pre_num.isdigit() and int(pre_num) in range(1,7):
+            if pre_num.isdigit() and int(pre_num) in range(1,8):
                 num = int(pre_num) - 1
                 if self.add_piece(1, num, self.board):
                   user_turn = False
