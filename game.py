@@ -43,9 +43,11 @@ class Game:
         # However, we only want to accept movable spaces, which is what the if statement tests for
         user_turn = True
         while user_turn:
-            num = int(input('Enter the row you would like to place your token in: ')) - 1
-            if self.add_piece(1, num, self.board):
-                user_turn = False
+            pre_num = input('Enter the row you would like to place your token in: ')
+            if pre_num.isdigit() and int(pre_num) in range(1,7):
+                num = int(pre_num) - 1
+                if self.add_piece(1, num, self.board):
+                  user_turn = False
             else:
                 print('That is not a valid option.')
         #Test to see if the player wins, if so, stop the game and say they won
