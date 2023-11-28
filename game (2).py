@@ -218,7 +218,7 @@ def main():
         g.print_board(g.board)
 
 def last_winner():
-    #Satisfy IO requirements - Improve readibility and comments in future.
+    #Satisfy IO requirements by checking if file exists, and creating it if it does not.
     if os.path.isfile('lastwinner.txt'):
         pass
     else:
@@ -230,11 +230,13 @@ def last_winner():
         return(f'Last winner was: {last_winner_answer}')
 
 def celebrate():
+    #Check to see if the professor is playing (and won), and print additional message.
     if Player1_Name.lower() == "matt" or "matthew" or "preim":
         print("Wow, you really destroyed the computer! We know youd win!")
 
 
 if __name__ == "__main__":
+    #Initialize the game
     print(last_winner())
     Player1_Name = input("Please enter your name: ")
     print(f'Best of luck, {Player1_Name}')
