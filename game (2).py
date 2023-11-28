@@ -10,7 +10,6 @@ ChangeLog:
     Removed the 'self.print_board(self.board)' line from the '__init__' method
     Added 'main()' function
     Improve error logic from user input for non-variable answer and out of range errors
-    Added IO requirements for last winning user - needs improvement
 '''
 '''
 TO DO LIST
@@ -20,12 +19,12 @@ TO DO LIST
         The simpler way to do this might be to track the number of turns taken vs total spaces on the board
         This is probably only important when *cough* sorry if I fix the ai
     Create a game GUI using tkinker (optional)
-    Create Main Menu GUI:
-    Improve file IO - possibly for stat storage?
+    Create Main Menu GUI: (dropped)
 '''
 
 from copy import deepcopy
 from random import randint
+import webbrowser
 import os
 
 
@@ -56,6 +55,7 @@ class Game:
         #Test to see if the player wins, if so, stop the game and say they won
         if self.test_for_winner(self.board, 1):
             print(f'\n{Player1_Name} Wins')
+            celebrate()
             with open('lastwinner.txt', 'w') as f:
                 f.write(str(Player1_Name+ " won, last, time"))
             self.running = False
@@ -229,6 +229,11 @@ def last_winner():
         last_winner_answer = f.read().split(',')
         last_winner_answer = "".join(last_winner_answer)
         return(f'Last winner was: {last_winner_answer}')
+
+def celebrate():
+    print("It's time to celebrate good times!")
+    print("You win finally!")
+    webbrowser.open('https://www.youtube.com/watch?v=3GwjfUFyY6M')
 
 if __name__ == "__main__":
     print(last_winner())
