@@ -24,7 +24,6 @@ TO DO LIST
 
 from copy import deepcopy
 from random import randint
-import webbrowser
 import os
 
 
@@ -231,9 +230,9 @@ def last_winner():
         return(f'Last winner was: {last_winner_answer}')
 
 def celebrate():
-    print("It's time to celebrate good times!")
-    print("You win finally!")
-    webbrowser.open('https://www.youtube.com/watch?v=3GwjfUFyY6M')
+    if Player1_Name.lower() == "matt" or "matthew" or "preim":
+        print("Wow, you really destroyed the computer! We know youd win!")
+
 
 if __name__ == "__main__":
     print(last_winner())
